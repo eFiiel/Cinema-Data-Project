@@ -55,6 +55,10 @@ O Amazon QuickSight é uma ferramenta bem completa, porém existem outras ferram
 
 ### Consideraçãoes Finais
 
-Levando em consideração a ideia de arquitetura proposta, foi desenvolvido um esboço da configuração do ambiente com terraform e gerado uma estimativa de custo aproximada que se encontra neste [link](https://calculator.aws/#/estimate?id=daf173301fa379469b649405918284e259860691)
+Levando em consideração a ideia de arquitetura proposta, foi desenvolvido um esboço da configuração do ambiente com terraform e gerado uma estimativa de custo aproximada que se encontra neste [link](https://calculator.aws/#/estimate?id=daf173301fa379469b649405918284e259860691).
+
 Diversos aspectos da estimativa foram empíricamente definidos, podendo variar a depender do volume de clientes e também da infraestrutura já existente.
+
 Os arquivos de terraform foram validados, mas não aplicados, podendo haver detalhes passíveis de correção.
+
+Grato pela oportunidade.
