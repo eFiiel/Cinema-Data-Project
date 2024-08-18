@@ -53,3 +53,8 @@ Apesar de a AWS possuir ferramentas de orquestração e ter uma alta capacidade 
 
 O Amazon QuickSight é uma ferramenta bem completa, porém existem outras ferramentas proprietárias que ocupam o topo do mercado, como Power BI e Tableau, as quais, dependendo da demanda, também são opções a serem utilizadas na construção de dashboards e relatórios. Além destas, também existem opções open source que podem atender às necessidades de visualização existentes para este projeto, como Metabase e Apache Superset, ferramentas de visualização bem completas, que podem ser hospedadas dentro da infraestrutura da AWS e se conectam facilmente a inúmeros bancos de dados. Essas ferramentas possuem uma alta variedade de customizações que podem atender às necessidades do projeto com um baixo custo.
 
+### Consideraçãoes Finais
+
+Levando em consideração a ideia de arquitetura proposta, foi desenvolvido um esboço da configuração do ambiente com terraform e gerado uma estimativa de custo aproximada que se encontra neste [link](https://calculator.aws/#/estimate?id=daf173301fa379469b649405918284e259860691)
+Diversos aspectos da estimativa foram empíricamente definidos, podendo variar a depender do volume de clientes e também da infraestrutura já existente.
+Os arquivos de terraform foram validados, mas não aplicados, podendo haver detalhes passíveis de correção.
