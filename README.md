@@ -6,11 +6,21 @@
 
 Este projeto visa criar uma solução completa para o rastreamento de leituras de QR Codes em cinemas. As câmeras instaladas nas entradas das salas capturam imagens dos ingressos, que são processadas para decodificação dos QR Codes. Os dados são então enviados para a nuvem AWS, onde são armazenados e analisados. A solução fornece insights como:
 
-- Identificação dos clientes que mais consomem a solução.
-- Detecção de horários de pico nas operações dos cinemas.
-- Identificação de sazonalidade.
-- Análise das cidades com as salas mais movimentadas.
-- Verificação de fraudes ou QR Codes repetidos.
+1. **Clientes que mais consomem a solução**  
+   A partir das leituras de QR Codes processadas, a solução conta quantas vezes cada cliente (cinema) envia dados para o sistema. Esse volume é armazenado no Redshift e pode ser visualizado em relatórios no QuickSight.
+
+2. **Horários de pico nas operações das salas de cinema**  
+   As leituras são registradas com timestamps que permitem analisar o volume de operação por hora e dia. Com o Glue, os dados são processados e armazenados no Redshift, onde gráficos no QuickSight mostram picos de atividade.
+
+3. **Sazonalidade na operação**  
+   Com séries temporais baseadas em dados históricos processados pelo Glue e armazenados no Redshift, a solução identifica padrões sazonais. Relatórios no QuickSight ou análises no SageMaker ajudam a visualizar esses ciclos.
+
+4. **Cidades com as salas mais movimentadas**  
+   Associando as leituras a informações de localização dos clientes, a solução usa o Redshift para agrupar os dados por cidade e gerar visualizações geográficas no QuickSight.
+
+5. **Detecção de fraudes com QR Codes repetidos**  
+   Os dados são armazenados no RDS e Redshift para detecção de padrões suspeitos e alertas, que podem ser encontrados utilizando modelos de machine learning no Sagemaker ou com consultas realizadas no Redshift. Essas análises históricas podem auxiliar na prevenção dessas fraudes. Utilizando o Kinesis para processar eventos em tempo real, a solução pode verificar a existência de leituras duplicadas ou em locais e horários diferentes e notificar ou realizar outras ações que podem ser definidas pelo cliente.
+
 
 ### Arquitetura da Solução
 
@@ -18,7 +28,7 @@ A solução é baseada em uma arquitetura modular e escalável, utilizando princ
 
 #### Visão Geral
 
-![Arquitetura](https://github.com/user-attachments/assets/4276c905-09f0-4d65-87e1-e5e3abbfcfb4)
+![Arquitetura](https://github.com/user-attachments/assets/2d664f1d-360e-4b72-86b8-58a045b065f3)
 
 #### Tecnologias Utilizadas
 
@@ -34,8 +44,12 @@ A solução é baseada em uma arquitetura modular e escalável, utilizando princ
 - **Amazon SageMaker**
 - **Amazon EMR**
 
-#### Serviços Externos (Opcional)
+#### Serviços Externos (Opcionais)
 
 - **Apache Airflow**: Orquestração de pipelines de dados.
+  
 Apesar de a AWS possuir ferramentas de orquestração e ter uma alta capacidade de processamento e autossuficiência com relação a manipulação de dados, a utilização de um orquestrador com o Apache Airflow pode trazer mais flexibilidade e possibilitar a implementação de rotinas mais complexas, principalmente levando em consideração aplicações futuras relacionadas aos padrões de fraude encontrados ou até mesmo para processamentos mais específicos e complexos que os dados possam requerer.
-- **Tableau/Power BI/Metabase**: Alternativas para visualização de dados.
+- **Tableau/Power BI/Metabase/Apache Superset**: Alternativas para visualização de dados.
+
+O Amazon QuickSight é uma ferramenta bem completa, porém existem outras ferramentas proprietárias que ocupam o topo do mercado, como Power BI e Tableau, as quais, dependendo da demanda, também são opções a serem utilizadas na construção de dashboards e relatórios. Além destas, também existem opções open source que podem atender às necessidades de visualização existentes para este projeto, como Metabase e Apache Superset, ferramentas de visualização bem completas, que podem ser hospedadas dentro da infraestrutura da AWS e se conectam facilmente a inúmeros bancos de dados. Essas ferramentas possuem uma alta variedade de customizações que podem atender às necessidades do projeto com um baixo custo.
+
