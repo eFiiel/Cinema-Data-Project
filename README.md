@@ -60,5 +60,3 @@ Levando em consideração a ideia de arquitetura proposta, foi desenvolvido um e
 Diversos aspectos da estimativa foram empíricamente definidos, podendo variar a depender do volume de clientes e também da infraestrutura já existente.
 
 Os arquivos de terraform foram validados, mas não aplicados, podendo haver detalhes passíveis de correção.
-
-Grato pela oportunidade.
